@@ -1,0 +1,87 @@
+:root {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+html * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 40ch;
+  gap: 4rem;
+  color: rgb(142, 116, 184);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 1rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.display {
+  display: flex;
+  justify-content: end;
+  font-size: 4rem;
+  font-weight: bold;
+  color: rgb(49, 11, 109);
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.25rem;
+}
+
+.calc-btn {
+  aspect-ratio: 1;
+  border-radius: 1rem;
+}
+
+.calc-btn:hover {
+  transform: scale(1.02);
+}
+
+.calc-btn:active {
+  transform: scale(0.98);
+}
+
+.num-btn {
+  font-size: 2.5rem;
+  color: rgb(192, 93, 58);
+  border: solid 2px orangered;
+  background-color: rgba(255, 68, 0, 0.06);
+}
+
+.num-btn:hover {
+  color: rgb(184, 54, 7);
+  background-color: rgba(255, 68, 0, 0.2);
+}
+
+.num-btn:active {
+  background-color: rgb(250, 177, 151);
+  color: white;
+}
+
+.operator-btn {
+  font-size: 2rem;
+  color: rgb(175, 41, 103);
+  border: solid 2px rgb(255, 0, 120);
+  background-color: rgba(255, 0, 120, 0.06);
+}
+
+.func-btn {
+  font-size: 2rem;
+  color: rgb(105, 78, 150);
+  border: solid 2px rgb(84, 0, 219);
+  background-color: rgba(84, 0, 219, 0.06);
+}
