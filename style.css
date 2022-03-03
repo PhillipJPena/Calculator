@@ -69,7 +69,6 @@ main {
 
 .num-btn:active {
   background-color: rgb(250, 177, 151);
-  color: white;
 }
 
 .operator-btn {

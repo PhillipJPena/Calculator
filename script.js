@@ -35,3 +35,5 @@ function numBtnHandler(e) {
 
 $$numBtns.forEach((btn) => btn.addEventListener("click", numBtnHandler));
 console.log(operate(firstOpperandFloat, secondOpperandFloat, operator));
+
+//NEXT TASK: ADD KEYBOARD INPUT TO KEYPAD
