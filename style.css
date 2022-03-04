@@ -31,8 +31,8 @@ main {
 .display {
   display: flex;
   justify-content: end;
+  font-family: monospace;
   font-size: 4rem;
-  font-weight: bold;
   color: rgb(49, 11, 109);
 }
 

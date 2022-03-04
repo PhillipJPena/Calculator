@@ -16,4 +16,4 @@ By using the following tools:
 - CSS3
 - Vanilla JS
 - Git
-- Figma for mockup
+- Figma
