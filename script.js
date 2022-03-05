@@ -6,11 +6,15 @@ const $positiveNegativeBtn = document.querySelector("#postive-negative");
 const $percentBtn = document.querySelector("#percent");
 const $equateBtn = document.querySelector("#equate");
 
-let firstOpperand = 0;
-let secondOpperand;
-let calcutedNum;
+let firstOpperand = null;
+let secondOpperand = null;
+let calculatedNum = null;
 let string = "0";
 let operator;
+
+const displayText = (text) => {
+  return ($display.textContent = text);
+};
 
 const calcSum = (a, b) => {
   return a + b;
@@ -25,15 +29,14 @@ const calcQuotient = (a, b) => {
   return a / b;
 };
 
-const operate = (a, b, operator) => {
-  console.log({ firstOpperand, secondOpperand, operator });
-  if (operator == "sum") calcutedNum = calcSum(a, b);
-  if (operator == "difference") calcutedNum = calcDifference(a, b);
-  if (operator == "product") calcutedNum = calcProduct(a, b);
-  if (operator == "quotient") calcutedNum = calcQuotient(a, b);
-  string = `${calcutedNum}`;
-  $display.textContent = string;
-  return string, calcutedNum;
+const operate = (a, b, op) => {
+  if (op === "sum") calculatedNum = calcSum(a, b);
+  if (op === "difference") calculatedNum = calcDifference(a, b);
+  if (op === "product") calculatedNum = calcProduct(a, b);
+  if (op === "quotient") calculatedNum = calcQuotient(a, b);
+  displayText(calculatedNum);
+  resetValues();
+  return calculatedNum;
 };
 
 function numBtnHandler(input) {
@@ -42,39 +45,55 @@ function numBtnHandler(input) {
   if (input === "." && string.includes(".")) return;
   if (string === "0" && input !== ".") {
     string = input;
-    $display.textContent = string;
-    return;
+    return displayText(string);
   }
 
   string += input;
-  $display.textContent = string;
-  return;
+  return displayText(string);
 }
 
 function operatorBtnHandler(input) {
+  setOpperand();
   if (operator) {
-    stringToFloat(string, secondOpperand);
     operate(firstOpperand, secondOpperand, operator);
+    setOpperand();
   }
-  if (!operator) {
-    stringToFloat(string, firstOpperand);
-    resetString();
+  setOperator(input);
+}
+
+function equateHandler() {
+  if (!firstOpperand && !operator) return;
+  setOpperand();
+  operate(firstOpperand, secondOpperand, operator);
+}
+
+function setOpperand() {
+  if (calculatedNum && string === "0") return (firstOpperand = calculatedNum);
+  if (firstOpperand) {
+    console.log("ran");
+    secondOpperand = parseFloat(string);
+    string = "0";
+    return secondOpperand, string;
   }
+  firstOpperand = parseFloat(string);
+  string = "0";
+  return firstOpperand, string;
+}
+
+function setOperator(input) {
   if (["x", "X", "*"].includes(input)) return (operator = "product");
   if (input === "/") return (operator = "quotient");
   if (input === "+") return (operator = "sum");
   if (input === "-") return (operator = "difference");
 }
 
-function stringToFloat(string, opperand) {
-  if (opperand === firstOpperand) {
-    return (firstOpperand = parseFloat(string));
-  }
-  return (secondOpperand = parseFloat(string));
-}
-
-function resetString() {
-  return (string = "0");
+function resetValues() {
+  return (
+    (firstOpperand = null),
+    (secondOpperand = null),
+    (operator = null),
+    (string = "0")
+  );
 }
 
 $$numBtns.forEach((btn) =>
@@ -84,16 +103,6 @@ $$numBtns.forEach((btn) =>
   })
 );
 
-document.addEventListener("keydown", (e) => {
-  let inputValue = e.key;
-  if (
-    ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."].includes(inputValue)
-  )
-    return numBtnHandler(inputValue);
-  if (["x", "X", "*", "-", "+", "/"].includes(inputValue))
-    return operatorBtnHandler(inputValue);
-});
-
 $$operatorBtns.forEach((btn) =>
   btn.addEventListener("click", (e) => {
     let inputValue = e.target.textContent;
@@ -102,5 +111,21 @@ $$operatorBtns.forEach((btn) =>
 );
 
 $equateBtn.addEventListener("click", (e) => {
-  //figure this out next
+  equateHandler();
+});
+
+document.addEventListener("keydown", (e) => {
+  let inputValue = e.key;
+
+  if (
+    ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."].includes(inputValue)
+  )
+    return numBtnHandler(inputValue);
+
+  if (["x", "X", "*", "-", "+", "/"].includes(inputValue))
+    return operatorBtnHandler(inputValue);
+
+  if (["=", "Enter"].includes(inputValue)) {
+    return equateHandler();
+  }
 });
