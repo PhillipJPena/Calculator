@@ -13,15 +13,16 @@ body {
   flex-direction: column;
   justify-content: space-between;
   margin: auto;
-  max-width: 50ch;
+  max-width: 55ch;
   height: 100vh;
   color: rgb(142, 116, 184);
   padding-bottom: 2rem;
 }
 
-@media screen and (min-width: 51ch) {
+@media screen and (min-width: 55ch) {
   body {
     justify-content: center;
+    max-width: 40ch;
   }
 }
 
