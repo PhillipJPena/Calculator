@@ -122,8 +122,12 @@ main {
   background-color: var(--secondary-color-surface-hover);
 }
 
-.operator-btn:active {
+.active-operator {
   color: var(--secondary-color-text-hc);
+  background-color: var(--secondary-color-surface-active);
+}
+
+.active-operator:hover {
   background-color: var(--secondary-color-surface-active);
 }
 
