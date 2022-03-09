@@ -20,6 +20,78 @@
   --accent-color-border: #fa934e;
   --accent-color-text-lc: #bd4b00;
   --accent-color-text-hc: #451e11;
+  --shadow-calc: 2px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.toggle-theme {
+  --color-background: #2a2f2c;
+  --color-surface: #141716;
+  --color-surface-hover: #393f3c;
+  --color-suface-active: #66736d;
+  --color-border: #4a524e;
+  --color-text-lc: #eceeed;
+  --color-text-hc: #eef1fd;
+  --secondary-color-surface: #033a34;
+  --secondary-color-surface-hover: #01453d;
+  --secondary-color-surface-active: #70e1c8;
+  --secondary-color-border: #006d5b;
+  --secondary-color-text-lc: #e7fcf7;
+  --secondary-color-text-hc: #e7fcf7;
+  --accent-color-surface: #4f2305;
+  --accent-color-surface-hover: #763205;
+  --accent-color-surface-active: #f76808;
+  --accent-color-border: #943e00;
+  --accent-color-text-lc: #feeadd;
+  --accent-color-text-hc: #feeadd;
+  --shadow-calc: 0px 0px 8px rgba(255, 255, 255, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #2a2f2c;
+    --color-surface: #141716;
+    --color-surface-hover: #393f3c;
+    --color-suface-active: #66736d;
+    --color-border: #4a524e;
+    --color-text-lc: #eceeed;
+    --color-text-hc: #eef1fd;
+    --secondary-color-surface: #033a34;
+    --secondary-color-surface-hover: #01453d;
+    --secondary-color-surface-active: #70e1c8;
+    --secondary-color-border: #006d5b;
+    --secondary-color-text-lc: #e7fcf7;
+    --secondary-color-text-hc: #e7fcf7;
+    --accent-color-surface: #4f2305;
+    --accent-color-surface-hover: #763205;
+    --accent-color-surface-active: #f76808;
+    --accent-color-border: #943e00;
+    --accent-color-text-lc: #feeadd;
+    --accent-color-text-hc: #feeadd;
+    --shadow-calc: 0px 0px 8px rgba(255, 255, 255, 0.25);
+  }
+
+  .toggle-theme {
+    --color-background: #fbfdfc;
+    --color-surface: #f8faf9;
+    --color-surface-hover: #f1f4f3;
+    --color-suface-active: #d7dcda;
+    --color-border: #c2c9c6;
+    --color-text-lc: #6a716e;
+    --color-text-hc: #111c18;
+    --secondary-color-surface: #d2f7ed;
+    --secondary-color-surface-hover: #c0efe3;
+    --secondary-color-surface-active: #7dd4c0;
+    --secondary-color-border: #40c4aa;
+    --secondary-color-text-lc: #147d6f;
+    --secondary-color-text-hc: #09342e;
+    --accent-color-surface: #ffe8d7;
+    --accent-color-surface-hover: #ffdcc3;
+    --accent-color-surface-active: #ffb381;
+    --accent-color-border: #fa934e;
+    --accent-color-text-lc: #bd4b00;
+    --accent-color-text-hc: #451e11;
+    --shadow-calc: 2px 2px 4px rgba(0, 0, 0, 0.05);
+  }
 }
 
 html * {
@@ -90,7 +162,7 @@ main {
   border: solid 1px;
   border-radius: 4px;
   transition: all 0.3s;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-calc);
 }
 
 .calc-btn:active {
@@ -112,16 +184,19 @@ main {
   background-color: var(--color-suface-active);
 }
 
+.equate-btn,
 .operator-btn {
   color: var(--secondary-color-text-lc);
   background-color: var(--secondary-color-surface);
   border-color: var(--secondary-color-border);
 }
 
+.equate-btn:hover,
 .operator-btn:hover {
   background-color: var(--secondary-color-surface-hover);
 }
 
+.equate-btn:active,
 .active-operator {
   color: var(--secondary-color-text-hc);
   background-color: var(--secondary-color-surface-active);
