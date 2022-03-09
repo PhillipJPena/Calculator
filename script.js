@@ -5,6 +5,7 @@ const $clearBtn = document.querySelector("#clear");
 const $positiveNegativeBtn = document.querySelector("#positive-negative");
 const $percentBtn = document.querySelector("#percent");
 const $equateBtn = document.querySelector("#equate");
+const $toggleThemeBtn = document.querySelector(".toggle-theme-btn");
 
 let operator;
 let opperand;
@@ -91,11 +92,19 @@ function performOperation(opperand, currentValue, operator) {
 }
 
 function clearEverything() {
+  if (document.querySelector(".active-operator")) toggleActiveOperator();
   opperand = null;
   operator = null;
   currentValue = 0;
   $display.textContent = "0";
   return opperand, operator, currentValue;
+}
+
+function toggleTheme() {
+  document.body.classList.toggle("toggle-theme");
+  document.querySelector("span").textContent === "🌙"
+    ? (document.querySelector("span").textContent = "🌞")
+    : (document.querySelector("span").textContent = "🌙");
 }
 
 $$numBtns.forEach((btn) => {
@@ -119,3 +128,5 @@ $percentBtn.addEventListener("click", () => {
   currentValue = currentValue / 100;
   return ($display.textContent = currentValue);
 });
+
+$toggleThemeBtn.addEventListener("click", toggleTheme);
